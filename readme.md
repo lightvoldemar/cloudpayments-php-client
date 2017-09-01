@@ -5,7 +5,7 @@
 
 ## Установка
 ```bash
-composer require cloudpayments/cloudpayments-php-client
+composer require tttptd/cloudpayments-php-client
 ```
 
 ## Использование
