@@ -2,6 +2,8 @@
 
 namespace CloudPayments;
 
+use CloudPayments\Model\Result;
+
 class Manager
 {
     /**
@@ -305,6 +307,7 @@ class Manager
      * @param $phone
      * @param $income
      * @param array $params
+     * @return Result
      * @throws Exception\RequestException
      */
     public function sendReceipt($inn, $invoiceId, $accountId, array $items, $taxationSystem, $email, $phone, $income = true, $params = [])
@@ -329,6 +332,8 @@ class Manager
         if (!$response['Success']) {
             throw new Exception\RequestException($response);
         }
+
+        return Result::fromArray($response);
     }
 
     /**
