@@ -23,7 +23,7 @@ class Manager
      * @var string
      */
     protected $privateKey;
-    
+
     /**
      * @var bool
      */
@@ -68,7 +68,7 @@ class Manager
 
         return (array)json_decode($result, true);
     }
-    
+
         /**
      * @param string $endpoint
      * @param $params
@@ -294,7 +294,7 @@ class Manager
 
         return Model\Transaction::fromArray($response['Model']);
     }
-    
+
     /**
      * @param $inn
      * @param $invoiceId
@@ -307,15 +307,15 @@ class Manager
      * @param array $params
      * @throws Exception\RequestException
      */
-    public function sendReceipt($inn, $invoiceId, $accountId, array $items, $taxationSystem, $email, $phone, $income = true, $params = []) 
+    public function sendReceipt($inn, $invoiceId, $accountId, array $items, $taxationSystem, $email, $phone, $income = true, $params = [])
     {
         $receiptArray = [
-            'Items' => $items, 
+            'Items' => $items,
             'taxationSystem' => $taxationSystem,
             'email' => $email,
             'phone' => $phone
         ];
-       
+
         $defaultParams = [
             'Inn' => $inn,
             'InvoiceId' => $invoiceId,
@@ -325,7 +325,7 @@ class Manager
         ];
 
         $response = $this->sendJSONRequest('/kkt/receipt', array_merge($defaultParams, $params));
-        
+
         if (!$response['Success']) {
             throw new Exception\RequestException($response);
         }
